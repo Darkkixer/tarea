@@ -3,9 +3,11 @@
   <head>
     <title>Capture Photo</title>
 
-  <script type="text/javascript" charset="utf-8" src="cordova-1.7.0.js">
+  <script type="text/javascript" charset="utf-8" src="cordova-1.7.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
 
- navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
+
+navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
     destinationType: Camera.DestinationType.FILE_URI }); 
 
 function onSuccess(imageURI) {
@@ -15,20 +17,25 @@ function onSuccess(imageURI) {
 
 function onFail(message) {
     alert('Failed because: ' + message);
-    
-    navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
-    destinationType: Camera.DestinationType.FILE_URI }); 
+}
 
-function onSuccess(imageURI) {
+
+function(imageData) {
+    // Do something with the image
+}
+
+ function capturePhoto() {
+      // Take picture using device camera and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+    }
+
+ 
+ function cameraCallback(imageData) {
     var image = document.getElementById('myImage');
-    image.src = imageURI;
+    image.src = "data:image/jpeg;base64," + imageData;
 }
 
-function onFail(message) {
-    alert('Failed because: ' + message);
-}
-
-}
 
 
 
