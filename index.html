@@ -29,6 +29,10 @@
         // Launch device camera application, 
         // allowing user to capture up to 2 images
         navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 2});
+        navigator.camera.showPreview("preview");
+    var options = { destinationFilename: "images/cam01.jpg", highRes: false};
+    navigator.capture.captureImage(success, fail, options);
+    navigator.camera.hidePreview("preview");
     }
 
     // Upload files to server
@@ -48,10 +52,18 @@
             },
             { fileName: name });   
     }
+    
+
+
+
+
 
     </script>
     </head>
     <body>
         <button onclick="captureImage();">Capture Image</button> <br>
+        <div id="preview"></div>
+
+
     </body>
 </html>
